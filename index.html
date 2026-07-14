@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+  <base href="/">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="بازی آموزش ترسیم ایزومتریک">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="ماستر ایزومتریک">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <title>ماستر ایزومتریک</title>
+  <link rel="manifest" href="manifest.json">
+
+  <!-- صفحهٔ لودینگ که قبل از بالاآمدنِ بازی نشان داده می‌شود -->
+  <style>
+    #loading {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #101216;
+      color: #C9C4BC;
+      font-family: Tahoma, "Segoe UI", system-ui, sans-serif;
+      direction: rtl;
+      text-align: center;
+      transition: opacity 0.4s ease;
+    }
+    #loading.hidden { opacity: 0; pointer-events: none; }
+    #loading .title {
+      font-size: 26px;
+      font-weight: bold;
+      color: #E8C87E;
+      margin-bottom: 26px;
+      letter-spacing: 1px;
+    }
+    #loading .spinner {
+      width: 54px;
+      height: 54px;
+      border: 5px solid rgba(255, 255, 255, 0.14);
+      border-top-color: #E8C87E;
+      border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+    }
+    #loading .msg {
+      margin-top: 24px;
+      font-size: 16px;
+      color: #E0DBD2;
+    }
+    #loading .sub {
+      margin-top: 10px;
+      font-size: 13px;
+      color: #8A8681;
+      max-width: 300px;
+      line-height: 1.7;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+  <div id="loading">
+    <div class="title">ماستر ایزومتریک</div>
+    <div class="spinner"></div>
+    <div class="msg">در حال بارگذاری بازی…</div>
+    <div class="sub">بارِ اول ممکن است چند ثانیه طول بکشد. لطفاً صبر کنید.</div>
+  </div>
+
+  <!--
+    You can customize the "flutter_bootstrap.js" script.
+    This is useful to provide a custom configuration to the Flutter loader
+    or to give the user feedback during the initialization process.
+
+    For more details:
+    * https://docs.flutter.dev/platform-integration/web/initialization
+  -->
+  <script src="flutter_bootstrap.js" async></script>
+
+  <!-- وقتی اولین فریمِ بازی رندر شد، صفحهٔ لودینگ محو و حذف می‌شود. -->
+  <script>
+    window.addEventListener('flutter-first-frame', function () {
+      var el = document.getElementById('loading');
+      if (!el) return;
+      el.classList.add('hidden');
+      setTimeout(function () { el.remove(); }, 450);
+    });
+  </script>
+</body>
+</html>
